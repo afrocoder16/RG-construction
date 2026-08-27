@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { careers, benefits, company } from '../data/site';
+---
+
+<BaseLayout
+  title="Construction Careers in Marshall, MN | R&G Construction"
+  description="Build your career with a family-owned heavy civil contractor. Explore operator, driver, laborer and mechanic opportunities at R&G Construction in Marshall, MN."
+>
+  <PageHero
+    eyebrow="Join the crew"
+    title="Build what outlives you."
+    intro="Good work. Good equipment. A crew that knows your name. Start your next construction career with R&G in Marshall."
+    number="05"
+    image="/images/utility-work.jpg"
+  />
+
+  <section class="career-intro section-pad">
+    <div class="container-shell intro-layout reveal">
+      <div><span class="eyebrow">Start your new career today</span><h2 class="display">Your next move<br />starts <em>here.</em></h2></div>
+      <div><p>R&G Construction is built around skilled people who take pride in work that matters. Whether you have years in the seat or are ready to learn the trade, we want to hear what you bring to the crew.</p><div class="intro-actions"><a class="btn btn-orange btn-arrow" href="#application">Apply Online</a><a class="btn btn-dark" href={`mailto:${company.jobsEmail}?subject=R%26G%20Construction%20Application`}>Email the Team</a></div></div>
+    </div>
+  </section>
+
+  <section class="positions-section">
+    <div class="container-shell positions-layout">
+      <div class="position-title reveal"><span class="eyebrow eyebrow-light">Positions</span><h2 class="display">Find your<br /><em>place on the crew.</em></h2><p>Openings vary by season and workload. Send an application to be considered for current and upcoming roles.</p></div>
+      <div class="position-list reveal">
+        {careers.map((career, index) => (
+          <a href={`mailto:${company.jobsEmail}?subject=Application%20-%20${encodeURIComponent(career)}`}>
+            <span>0{index + 1}</span><strong class="display">{career}</strong><i>Apply ↗</i>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="application" class="application-section section-pad">
+    <div class="container-shell application-layout">
+      <div class="application-intro reveal">
+        <span class="eyebrow">Online application</span>
+        <h2 class="display">Put your name<br />on the <em>list.</em></h2>
+        <p>Complete the form in a few minutes. When you submit, your email app opens with a structured application ready to send directly to R&G.</p>
+        <div class="application-trust">
+          <div><span>01</span><strong>No account required</strong></div>
+          <div><span>02</span><strong>Your answers stay on your device</strong></div>
+          <div><span>03</span><strong>Sent directly to the hiring inbox</strong></div>
+        </div>
+        <a href={`mailto:${company.jobsEmail}`}>{company.jobsEmail} ↗</a>
+      </div>
+
+      <form class="career-form reveal" data-career-form>
+        <div class="form-progress"><span>R&G Employment Application</span><b>Online / Static</b></div>
+        <fieldset>
+          <legend><span>01</span>About you</legend>
+          <div class="form-grid">
+            <label><span class="field-label">Full name *</span><input class="field" name="name" type="text" autocomplete="name" required /></label>
+            <label><span class="field-label">Phone *</span><input class="field" name="phone" type="tel" autocomplete="tel" required /></label>
+            <label><span class="field-label">Email *</span><input class="field" name="email" type="email" autocomplete="email" required /></label>
+            <label><span class="field-label">City / State *</span><input class="field" name="location" type="text" autocomplete="address-level2" placeholder="Marshall, MN" required /></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><span>02</span>The work</legend>
+          <div class="form-grid">
+            <label><span class="field-label">Position *</span><select class="field" name="position" required><option value="">Select a role</option>{careers.map((career)=><option>{career}</option>)}<option>General Application</option></select></label>
+            <label><span class="field-label">Available start date</span><input class="field" name="startDate" type="date" /></label>
+            <label><span class="field-label">Years of relevant experience</span><select class="field" name="experience"><option>Less than 1 year</option><option>1–3 years</option><option>4–7 years</option><option>8+ years</option></select></label>
+            <label><span class="field-label">Commercial driver's license</span><select class="field" name="cdl"><option>No CDL</option><option>Class A</option><option>Class B</option><option>Permit / In progress</option></select></label>
+            <label class="wide"><span class="field-label">Equipment operated</span><input class="field" name="equipment" type="text" placeholder="Dozers, scrapers, graders, excavators, trucks…" /></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><span>03</span>Your experience</legend>
+          <div class="form-grid">
+            <label class="wide"><span class="field-label">Recent work history *</span><textarea class="field" name="history" rows="5" placeholder="Employer, role, dates and primary responsibilities" required></textarea></label>
+            <label class="wide"><span class="field-label">Resume or profile link <small>(optional)</small></span><input class="field" name="resume" type="url" placeholder="Google Drive, Dropbox, LinkedIn or another share link" /></label>
+            <label class="wide"><span class="field-label">Anything else we should know?</span><textarea class="field" name="message" rows="4" placeholder="Certifications, schedule, references or the kind of work you want to do"></textarea></label>
+          </div>
+        </fieldset>
+        <label class="consent"><input type="checkbox" name="consent" required /><span>I certify that this information is accurate and authorize R&G Construction to contact me about employment opportunities.</span></label>
+        <div class="submit-row"><p>Submitting opens your email app. Review the message, attach a resume if desired, and press send.</p><button class="btn btn-orange btn-arrow" type="submit">Prepare Application</button></div>
+        <p class="application-status" role="status" data-application-status></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="benefits-section section-pad">
+    <div class="container-shell benefits-heading reveal"><div><span class="eyebrow">Built around our people</span><h2 class="display">Put in the work.<br /><em>Share in the success.</em></h2></div><p>R&G pairs steady, meaningful work with benefits that help protect your health, future and family.</p></div>
+    <div class="container-shell benefit-grid reveal">
+      {benefits.map((benefit, index) => (
+        <div><span>/0{index + 1}</span><div class="benefit-icon" aria-hidden="true">{index === 0 ? '+' : index === 1 ? '↗' : index === 2 ? '%' : '↑'}</div><h3 class="display">{benefit}</h3></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="process-section grain">
+    <div class="container-shell process-grid reveal">
+      <div><span class="eyebrow eyebrow-light">How to apply</span><h2 class="display">Three steps.<br />One solid move.</h2></div>
+      <ol>
+        <li><span>01</span><div><strong>Apply online</strong><p>Complete the online form with your experience, preferred role and qualifications.</p></div></li>
+        <li><span>02</span><div><strong>Review and send</strong><p>Your email app opens with the application prepared for <a href={`mailto:${company.jobsEmail}`}>{company.jobsEmail}</a>.</p></div></li>
+        <li><span>03</span><div><strong>Talk with the team</strong><p>If your experience fits an opening, R&G will contact you about next steps.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="eoe"><div class="container-shell"><strong>Equal Opportunity Employer</strong><p>R&G Construction Co. provides equal employment opportunities to all employees and applicants without regard to legally protected status.</p></div></section>
+</BaseLayout>
+
+<style>
+  .career-intro { background: var(--paper); }
+  .intro-layout, .benefits-heading { display: grid; grid-template-columns: 1.1fr .8fr; align-items: end; gap: 6rem; }
+  h2 { margin: 1.2rem 0 0; font-size: clamp(4rem, 8vw, 8rem); }
+  h2 em { color: var(--orange); font-style: italic; }
+  .intro-layout p, .benefits-heading p { margin: 0 0 1.6rem; color: #626660; line-height: 1.8; }
+  .intro-actions { display: flex; flex-wrap: wrap; gap: .7rem; }
+  .positions-section { background: #292e2b; color: var(--bone); border-block: 1px solid #3f443f; }
+  .positions-layout { display: grid; grid-template-columns: .8fr 1fr; gap: 7rem; padding-block: 8rem; }
+  .position-title { position: sticky; top: 120px; align-self: start; }
+  .position-title h2 { font-size: clamp(4rem, 7vw, 7.5rem); }
+  .position-title p { max-width: 480px; color: #b7b3aa; line-height: 1.75; }
+  .position-list { border-top: 1px solid #4b504c; }
+  .position-list a { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 1rem; border-bottom: 1px solid #4b504c; padding-block: 1.45rem; transition: padding .25s, background .25s; }
+  .position-list a:hover { padding-inline: 1rem; background: #343a36; }
+  .position-list span { color: var(--orange); font-family: var(--display); }
+  .position-list strong { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+  .position-list i { color: #838783; font-size: .6rem; font-style: normal; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .application-section { background: #bfb7a9; scroll-margin-top: 90px; }
+  .application-layout { display: grid; grid-template-columns: .64fr 1.1fr; gap: 6rem; align-items: start; }
+  .application-intro { position: sticky; top: 125px; }
+  .application-intro h2 { font-size: clamp(4.2rem,7vw,7.2rem); }
+  .application-intro > p { color: #626660; line-height: 1.75; }
+  .application-trust { margin: 2rem 0; border-top: 1px solid #c7c0b1; }
+  .application-trust > div { display: grid; grid-template-columns: 38px 1fr; border-bottom: 1px solid #c7c0b1; padding-block: .9rem; }
+  .application-trust span { color: var(--yellow-deep); font-family: var(--display); }.application-trust strong { font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; }
+  .application-intro > a { border-bottom: 2px solid var(--yellow-deep); padding-bottom: .35rem; font-size: .72rem; font-weight: 800; }
+  .career-form { border: 1px solid #9d9588; background: #e6e0d5; padding: clamp(1.2rem,3.3vw,2.8rem); box-shadow: 16px 16px 0 #a9a193; }
+  .form-progress { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 4px solid var(--yellow); padding-bottom: 1rem; }
+  .form-progress span,.form-progress b { font-size: .62rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }.form-progress b { color: #7d817b; }
+  fieldset { min-width: 0; margin: 2.2rem 0 0; border: 0; border-bottom: 1px solid #ddd6c9; padding: 0 0 2rem; }
+  legend { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; padding: 0; font-family: var(--display); font-size: 1.65rem; font-weight: 800; text-transform: uppercase; }
+  legend span { display: grid; place-items: center; width: 34px; height: 34px; background: var(--yellow); font-family: var(--body); font-size: .55rem; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }.form-grid .wide { grid-column: 1/-1; }
+  .consent { display: grid; grid-template-columns: 20px 1fr; gap: .7rem; margin-top: 1.5rem; color: #626660; font-size: .7rem; line-height: 1.55; }.consent input { width: 18px; height: 18px; accent-color: var(--yellow-deep); }
+  .submit-row { display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin-top: 1.5rem; }.submit-row p { max-width: 330px; margin: 0; color: #858983; font-size: .65rem; line-height: 1.5; }.application-status { margin: 1rem 0 0; color: #2c713d; font-size: .72rem; font-weight: 800; }
+  .benefits-section { background: #c7bfb1; }
+  .benefits-heading { margin-bottom: 3.5rem; }
+  .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #bbb6aa; border-left: 1px solid #bbb6aa; }
+  .benefit-grid > div { min-height: 300px; display: flex; flex-direction: column; border-right: 1px solid #bbb6aa; border-bottom: 1px solid #bbb6aa; padding: 1.6rem; }
+  .benefit-grid span { color: var(--orange); font-family: var(--display); }
+  .benefit-icon { display: grid; place-items: center; width: 58px; height: 58px; margin-top: 3.5rem; border: 1px solid #aaa599; border-radius: 50%; font-family: var(--display); font-size: 1.6rem; }
+  .benefit-grid h3 { margin: auto 0 0; font-size: 2.35rem; }
+  .process-section { background: #bda817; color: var(--ink); }
+  .process-grid { display: grid; grid-template-columns: .85fr 1fr; gap: 7rem; padding-block: 7rem; }
+  .process-grid h2 { font-size: clamp(4rem, 7vw, 7rem); }
+  .process-grid ol { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.35); }
+  .process-grid li { display: grid; grid-template-columns: 50px 1fr; border-bottom: 1px solid rgba(255,255,255,.35); padding-block: 1.5rem; }
+  .process-grid li > span { grid-row: span 2; font-family: var(--display); }
+  .process-grid strong { font-family: var(--display); font-size: 1.6rem; text-transform: uppercase; }
+  .process-grid p { margin: .5rem 0 0; color: rgba(20,22,21,.7); font-size: .82rem; line-height: 1.6; }
+  .process-grid p a { border-bottom: 1px solid var(--ink); color: var(--ink); }
+  .eoe { background: #dcd7cc; }
+  .eoe > div { display: flex; justify-content: space-between; gap: 3rem; padding-block: 1.5rem; }
+  .eoe strong { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+  .eoe p { max-width: 680px; margin: 0; color: #777a75; font-size: .63rem; line-height: 1.5; }
+  @media (max-width: 900px) { .intro-layout, .benefits-heading, .positions-layout, .process-grid, .application-layout { grid-template-columns: 1fr; gap: 3rem; } .position-title,.application-intro { position: static; } .benefit-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .benefit-grid,.form-grid { grid-template-columns: 1fr; } .form-grid .wide { grid-column: auto; }.submit-row { align-items: stretch; flex-direction: column; }.eoe > div { flex-direction: column; gap: .7rem; } .position-list i { display: none; } }
+</style>
+
+<script is:inline define:vars={{ jobsEmail: company.jobsEmail }}>
+  const careerForm = document.querySelector('[data-career-form]');
+  const applicationStatus = document.querySelector('[data-application-status]');
+  careerForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!(careerForm instanceof HTMLFormElement) || !careerForm.reportValidity()) return;
+    const data = new FormData(careerForm);
+    const name = String(data.get('name') || 'Applicant');
+    const position = String(data.get('position') || 'General Application');
+    const subject = `Employment Application: ${position} — ${name}`;
+    const body = [
+      'R&G CONSTRUCTION — ONLINE EMPLOYMENT APPLICATION',
+      '',
+      `Name: ${name}`,
+      `Phone: ${data.get('phone')}`,
+      `Email: ${data.get('email')}`,
+      `Location: ${data.get('location')}`,
+      '',
+      `Position: ${position}`,
+      `Available start date: ${data.get('startDate') || 'Not specified'}`,
+      `Relevant experience: ${data.get('experience')}`,
+      `CDL: ${data.get('cdl')}`,
+      `Equipment operated: ${data.get('equipment') || 'Not specified'}`,
+      '',
+      'RECENT WORK HISTORY',
+      String(data.get('history') || ''),
+      '',
+      `Resume/profile link: ${data.get('resume') || 'Not provided'}`,
+      '',
+      'ADDITIONAL INFORMATION',
+      String(data.get('message') || 'None provided'),
+      '',
+      'Applicant certified that the information provided is accurate and authorized R&G Construction to make contact regarding employment.',
+    ].join('\n');
+    if (applicationStatus) applicationStatus.textContent = 'Application prepared—opening your email app now…';
+    window.location.href = `mailto:${jobsEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

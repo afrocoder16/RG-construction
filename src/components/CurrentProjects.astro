@@ -1,0 +1,30 @@
+---
+import { currentProjects } from '../data/metrics';
+---
+
+{/* CMS PLACEHOLDER: Replace with active R&G projects and review monthly so this section never goes stale. */}
+<div class="current-projects">
+  {currentProjects.map((project, index) => (
+    <article>
+      <div class="project-order">0{index + 1}</div>
+      <div class="project-copy"><span>{project.location}</span><h3 class="display">{project.name}</h3><p>{project.scope}</p></div>
+      <div class="project-status"><span><i></i>{project.status}</span><strong>{project.progress}</strong><div><b style={`width:${project.progress}`}></b></div><small>Sample progress</small></div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .current-projects { border-top: 1px solid #c9c2b2; }
+  article { display: grid; grid-template-columns: 70px minmax(0,1fr) 190px; align-items: center; gap: 2rem; border-bottom: 1px solid #c9c2b2; padding-block: 1.5rem; }
+  .project-order { color: var(--yellow-deep); font-family: var(--display); font-weight: 800; }
+  .project-copy > span { color: #777a74; font-size: .58rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  h3 { margin: .45rem 0; font-size: clamp(1.8rem,3vw,2.7rem); }
+  .project-copy p { margin: 0; color: #666963; font-size: .74rem; line-height: 1.55; }
+  .project-status > span { display: flex; align-items: center; gap: .5rem; font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  .project-status i { width: 7px; height: 7px; border-radius: 50%; background: #35a760; box-shadow: 0 0 0 4px rgba(53,167,96,.12); }
+  .project-status strong { display: block; margin: .65rem 0 .25rem; font-family: var(--display); font-size: 1.5rem; }
+  .project-status > div { height: 4px; background: #d8d2c4; }
+  .project-status b { display: block; height: 100%; background: var(--yellow-deep); }
+  .project-status small { color: #9a9c97; font-size: .5rem; text-transform: uppercase; }
+  @media (max-width: 720px) { article { grid-template-columns: 38px 1fr; gap: 1rem; } .project-status { grid-column: 2; max-width: 240px; } }
+</style>

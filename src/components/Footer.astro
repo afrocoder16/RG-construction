@@ -1,0 +1,67 @@
+---
+import { company, navItems } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer grid-lines">
+  <div class="container-shell footer-top">
+    <div>
+      <span class="eyebrow eyebrow-light">Built from the ground up</span>
+      <h2 class="display footer-title">Have a project<br />in the dirt?</h2>
+    </div>
+    <div class="footer-cta">
+      <p>Tell us where the work is, what needs to move, and when you need to break ground.</p>
+      <a class="btn btn-orange btn-arrow" href="/contact#quote">Request a Quote</a>
+    </div>
+  </div>
+  <div class="container-shell footer-main">
+    <div class="footer-brand">
+      <a class="footer-logo" href="/"><img src="/images/logo.png" alt="R&G Construction" /></a>
+      <p>Heavy civil construction across Minnesota and South Dakota since 1983.</p>
+    </div>
+    <div>
+      <h3>Navigate</h3>
+      <div class="footer-links">{navItems.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <div class="footer-links">
+        <a href={company.phoneHref}>{company.phone}</a>
+        <a href={`mailto:${company.email}`}>{company.email}</a>
+        <a href={company.mapsUrl} target="_blank" rel="noreferrer">{company.address}<br />{company.addressLine2}</a>
+      </div>
+    </div>
+    <div>
+      <h3>Bid & Work</h3>
+      <div class="footer-links">
+        <a href={`mailto:${company.quotesEmail}`}>{company.quotesEmail}</a>
+        <a href={`mailto:${company.jobsEmail}`}>{company.jobsEmail}</a>
+        <a href="#" aria-label="R&G Construction on Facebook">Facebook ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="container-shell footer-bottom">
+    <span>© {year} R&G Construction Co. All rights reserved.</span>
+    <span>Family owned · Equal opportunity employer</span>
+  </div>
+</footer>
+
+<style>
+  .footer { position: relative; overflow: hidden; background-color: #202421; background-image: linear-gradient(rgba(238,233,223,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(238,233,223,.035) 1px, transparent 1px); color: var(--bone); border-top: 1px solid #3a3f3b; }
+  .footer::before { content: 'R&G'; position: absolute; right: -2rem; bottom: -4rem; color: rgba(238,233,223,.025); font-family: var(--display); font-size: min(36vw, 36rem); font-weight: 900; line-height: .7; pointer-events: none; }
+  .footer-top { position: relative; z-index: 1; display: grid; grid-template-columns: 1.3fr .7fr; gap: 3rem; padding-block: 6.5rem 5rem; border-bottom: 1px solid rgba(238,233,223,.14); }
+  .footer-title { margin: 1.2rem 0 0; font-size: clamp(4rem, 8vw, 8.5rem); }
+  .footer-cta { max-width: 25rem; align-self: end; }
+  .footer-cta p { margin: 0 0 1.6rem; color: #aaa79e; line-height: 1.7; }
+  .footer-main { position: relative; z-index: 1; display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 3.5rem; padding-block: 4rem; }
+  .footer-logo { display: inline-flex; width: 112px; height: 105px; background: var(--bone); }
+  .footer-logo img { width: 100%; height: 100%; object-fit: contain; }
+  .footer-brand p { max-width: 18rem; margin: 1.5rem 0 0; color: #9e9b92; font-size: .85rem; line-height: 1.6; }
+  .footer h3 { margin: 0 0 1.3rem; color: var(--yellow); font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .footer-links { display: flex; flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .footer-links a { color: #bbb7ae; font-size: .82rem; line-height: 1.55; transition: color .2s; }
+  .footer-links a:hover { color: white; }
+  .footer-bottom { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 2rem; border-top: 1px solid rgba(238,233,223,.11); padding-block: 1.5rem; color: #777b75; font-size: .66rem; letter-spacing: .04em; text-transform: uppercase; }
+  @media (max-width: 850px) { .footer-top { grid-template-columns: 1fr; } .footer-main { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .footer-main { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: .5rem; } }
+</style>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { services } from '../data/site';
+---
+
+<BaseLayout
+  title="Heavy Civil Construction Services | R&G Construction"
+  description="Explore R&G Construction's highway grading, reclamation, utility, storm sewer, demolition, site development, airport and box culvert capabilities."
+>
+  <PageHero
+    eyebrow="Capabilities"
+    title="We move the work forward."
+    intro="Eight connected civil construction disciplines. One field-proven team built to handle changing ground, tight grades and demanding schedules."
+    number="01"
+    image="/images/grader-earthwork.jpg"
+  />
+
+  <section class="service-intro section-pad">
+    <div class="container-shell intro-layout reveal">
+      <div><span class="eyebrow">From cut to finish</span><h2 class="display">Built for the work<br /><em>below the surface.</em></h2></div>
+      <div><p>R&G Construction brings more than four decades of Upper Midwest experience to transportation, municipal and commercial work. We understand how earth, water, weather and sequence affect the finished job—and we plan accordingly.</p><a class="btn btn-dark btn-arrow" href="/contact#quote">Talk to an estimator</a></div>
+    </div>
+  </section>
+
+  <section class="service-list">
+    {services.map((service, index) => (
+      <article id={service.slug} class:list={['service-row', { dark: index % 2 === 1 }]}>
+        <div class="container-shell service-layout reveal">
+          <div class="service-number"><span>Service</span><strong>{service.number}</strong></div>
+          <div class="service-heading">
+            <span class="eyebrow">{service.tags[0]}</span>
+            <h2 class="display">{service.title}</h2>
+          </div>
+          <div class="service-detail">
+            <p>{service.detail}</p>
+            <div class="tag-row">{service.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+            <a href={`/contact?service=${service.slug}#quote`}>Discuss this service <span>↗</span></a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="equipment-band grain">
+    {/* TODO: replace with real R&G equipment fleet photo before launch */}
+    <img src="/images/rg-hero.png" alt="Representative heavy civil construction fleet working on rural roadway earthwork" loading="lazy" />
+    <div class="equipment-overlay"></div>
+    <div class="container-shell equipment-content reveal">
+        <span class="eyebrow eyebrow-light">The equipment behind the outcome</span>
+      <h2 class="display">Right iron.<br />Right operators.<br /><em>Right grade.</em></h2>
+      <p>GPS-guided dozers, graders and excavators turn digital design into efficient field production.</p>
+      <a class="btn btn-orange btn-arrow" href="/about#technology">Our technology</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-intro { background: var(--paper); }
+  .intro-layout { display: grid; grid-template-columns: 1.2fr .7fr; align-items: end; gap: 7rem; }
+  h2 { margin: 1.25rem 0 0; font-size: clamp(4rem, 7vw, 7.4rem); }
+  h2 em { color: var(--orange); font-style: italic; }
+  .intro-layout p { margin: 0 0 1.7rem; color: #626660; line-height: 1.8; }
+  .service-row { border-top: 1px solid #aaa294; background: #bfb7a9; scroll-margin-top: 84px; }
+  .service-row.dark { background: #d8d1c4; color: var(--ink); border-color: #b9b0a2; }
+  .service-layout { min-height: 410px; display: grid; grid-template-columns: 120px minmax(280px, 1fr) minmax(280px, .85fr); align-items: center; gap: 3.5rem; padding-block: 4rem; }
+  .service-number { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid #c9c4b9; padding-right: 2rem; }
+  .dark .service-number { border-color: #d1cabd; }
+  .service-number span { color: #8d908a; font-size: .59rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .service-number strong { color: var(--orange); font-family: var(--display); font-size: 4.2rem; line-height: .8; }
+  .service-heading h2 { max-width: 510px; font-size: clamp(3.6rem, 5.7vw, 6.5rem); }
+  .service-detail p { color: #555954; line-height: 1.8; }
+  .dark .service-detail p { color: #555954; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0; }
+  .service-detail a { display: inline-flex; gap: .7rem; border-bottom: 2px solid var(--orange); padding-bottom: .4rem; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .service-detail a span { color: var(--orange); }
+  .equipment-band { position: relative; min-height: 760px; display: flex; align-items: center; overflow: hidden; background: var(--graphite); color: var(--bone); }
+  .equipment-band > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .equipment-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(27,31,28,.97), rgba(27,31,28,.8) 50%, rgba(27,31,28,.1)); }
+  .equipment-content { position: relative; z-index: 2; }
+  .equipment-content h2 { margin-block: 1.3rem; font-size: clamp(4.7rem, 9vw, 9rem); }
+  .equipment-content h2 em { color: var(--yellow); }
+  .equipment-content p { max-width: 520px; color: #c2beb5; line-height: 1.7; }
+  .equipment-content .btn { margin-top: 1.3rem; }
+  @media (max-width: 900px) { .intro-layout { grid-template-columns: 1fr; gap: 2.5rem; } .service-layout { grid-template-columns: 80px 1fr; gap: 2rem; } .service-detail { grid-column: 2; } }
+  @media (max-width: 600px) { .service-layout { grid-template-columns: 1fr; } .service-number { min-height: auto; flex-direction: row; align-items: center; border-right: 0; border-bottom: 1px solid #c9c4b9; padding: 0 0 1rem; } .dark .service-number { border-color: #353939; } .service-detail { grid-column: auto; } .equipment-band { min-height: 650px; } }
+</style>

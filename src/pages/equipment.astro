@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { fleetCategories } from '../data/fleet';
+---
+
+<BaseLayout
+  title="Equipment & Fleet | R&G Construction Marshall, MN"
+  description="Explore the representative heavy civil fleet and GPS-guided grading technology behind R&G Construction's highway, site and airport work."
+>
+  <PageHero
+    eyebrow="Equipment & fleet"
+    title="The right iron for the job."
+    intro="Production-built equipment, experienced operators and digital grade control working as one system."
+    number="02"
+    image="/images/precision-grading.jpg"
+  />
+
+  <section class="fleet-intro section-pad">
+    <div class="container-shell fleet-intro-grid reveal">
+      <div><span class="eyebrow">Representative fleet</span><h2 class="display">Ready to cut.<br /><em>Built to finish.</em></h2></div>
+      <div class="fleet-note"><strong>Inventory preview</strong><p>The models below show how a future fleet catalog will work. R&G should replace this sample inventory with its actual models, counts and approved photography.</p></div>
+    </div>
+  </section>
+
+  <section class="fleet-list">
+    <div class="container-shell fleet-layout">
+      <aside class="fleet-index reveal" aria-label="Equipment categories">
+        <span>Jump to category</span>
+        {fleetCategories.map((category, index) => <a href={`#${category.name.toLowerCase().replaceAll(' ','-')}`}><b>0{index + 1}</b>{category.name}</a>)}
+      </aside>
+
+      <div class="fleet-categories">
+        {/* PLACEHOLDER: Replace all listed models and representative images with R&G's actual fleet before launch. */}
+        {fleetCategories.map((category, index) => (
+          <article id={category.name.toLowerCase().replaceAll(' ','-')} class="fleet-category reveal">
+            <div class="category-head"><span>{category.code}</span><div><small>Category 0{index + 1}</small><h2 class="display">{category.name}</h2><p>{category.description}</p></div></div>
+            <div class="equipment-items">
+              {category.items.map((item) => (
+                <div><span class="equipment-mark" aria-hidden="true">{category.code}</span><div><h3 class="display">{item.model}</h3><p>{item.use}</p></div><small>Representative model</small></div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="gps-story angled-top grain">
+    <div class="container-shell gps-layout">
+      <div class="gps-image reveal">
+        {/* PLACEHOLDER: Replace with approved close-up photography of R&G's Trimble-equipped machines. */}
+        <img src="/images/grader-earthwork.jpg" alt="Representative GPS-guided motor grader working on a heavy civil site" loading="lazy" />
+        <div class="gps-rings"><span></span></div>
+        <div class="machine-tag"><small>Machine control</small><strong>Trimble GPS</strong><span>Design → cab → grade</span></div>
+      </div>
+      <div class="gps-copy reveal">
+        <span class="eyebrow">Precision in the cab</span>
+        <h2 class="display">Less staking.<br />More <em>building.</em></h2>
+        <p>R&G has implemented state-of-the-art GPS equipment on multiple machines, allowing crews to construct directly from digital design surfaces without relying on traditional survey staking throughout the field.</p>
+        <div class="gps-uses">
+          <div><span>01</span><strong>MnDOT highways</strong><p>Carry roadway models into active grading operations.</p></div>
+          <div><span>02</span><strong>County grading</strong><p>Move accurately across long rural corridors.</p></div>
+          <div><span>03</span><strong>Airport construction</strong><p>Hold precise elevations across runways and taxiways.</p></div>
+        </div>
+        <a class="btn btn-orange btn-arrow" href="/contact#quote">Put the fleet to work</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fleet-cta">
+    <div class="container-shell reveal"><span>Need production capacity?</span><h2 class="display">Tell us what needs to move.</h2><a class="btn btn-dark btn-arrow" href="/contact#quote">Request a Quote</a></div>
+  </section>
+</BaseLayout>
+
+<style>
+  .fleet-intro { background: var(--paper); }
+  .fleet-intro-grid { display: grid; grid-template-columns: 1.1fr .7fr; align-items: end; gap: 7rem; }
+  h2 { margin: 1.2rem 0 0; font-size: clamp(4rem,7.5vw,7.8rem); }
+  h2 em { color: var(--yellow-deep); font-style: italic; }
+  .fleet-note { border-left: 5px solid var(--yellow); padding-left: 1.2rem; }
+  .fleet-note strong { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+  .fleet-note p { margin: .6rem 0 0; color: #666a64; font-size: .83rem; line-height: 1.7; }
+  .fleet-list { background: #c9c1b3; border-top: 1px solid #afa697; }
+  .fleet-layout { display: grid; grid-template-columns: 235px minmax(0,1fr); gap: 5rem; padding-block: 6rem; }
+  .fleet-index { position: sticky; top: 125px; align-self: start; display: flex; flex-direction: column; border-top: 1px solid #cfc8b9; }
+  .fleet-index > span { padding-block: 1rem; color: #888b85; font-size: .57rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+  .fleet-index a { display: flex; gap: .8rem; border-top: 1px solid #ded8cc; padding-block: .8rem; color: #5f635e; font-family: var(--display); font-size: 1.15rem; font-weight: 700; text-transform: uppercase; transition: color .2s, padding .2s; }
+  .fleet-index a:hover { color: var(--yellow-deep); padding-left: .4rem; }
+  .fleet-index b { color: var(--yellow-deep); font-family: var(--body); font-size: .55rem; }
+  .fleet-categories { display: flex; flex-direction: column; }
+  .fleet-category { scroll-margin-top: 120px; border-top: 1px solid #aaa294; padding-block: 3.5rem; }
+  .category-head { display: grid; grid-template-columns: 90px 1fr; gap: 2rem; }
+  .category-head > span { display: grid; place-items: center; width: 72px; height: 72px; background: var(--yellow); font-family: var(--display); font-size: 1.6rem; font-weight: 800; }
+  .category-head small { color: #888b85; font-size: .56rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .category-head h2 { margin: .45rem 0 .7rem; font-size: clamp(3.2rem,5.5vw,5.8rem); }
+  .category-head p { max-width: 660px; margin: 0; color: #686c66; line-height: 1.7; }
+  .equipment-items { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-top: 2.2rem; }
+  .equipment-items > div { min-height: 165px; display: grid; grid-template-columns: 55px 1fr; gap: 1rem; border: 1px solid #aaa294; background: #d8d1c4; padding: 1.2rem; }
+  .equipment-mark { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--yellow-deep); border-radius: 50%; color: var(--yellow-deep); font-family: var(--display); font-weight: 800; }
+  .equipment-items h3 { margin: 0 0 .5rem; font-size: 1.65rem; }
+  .equipment-items p { margin: 0; color: #686c66; font-size: .73rem; line-height: 1.55; }
+  .equipment-items small { grid-column: 2; align-self: end; color: #9a9c97; font-size: .5rem; letter-spacing: .08em; text-transform: uppercase; }
+  .gps-story { background: #aaa294; color: var(--ink); }
+  .gps-layout { display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 7rem; padding-bottom: 8rem; }
+  .gps-image { position: relative; min-height: 670px; }
+  .gps-image img { width: 100%; height: 100%; min-height: 670px; object-fit: cover; filter: saturate(.72); }
+  .gps-rings { position: absolute; left: 58%; top: 50%; width: 120px; height: 120px; border: 2px solid var(--yellow); border-radius: 50%; }
+  .gps-rings::before,.gps-rings::after { content: ''; position: absolute; background: var(--yellow); }
+  .gps-rings::before { left: -24px; top: 50%; width: 166px; height: 1px; }.gps-rings::after { left: 50%; top: -24px; width: 1px; height: 166px; }
+  .gps-rings span { position: absolute; inset: 17px; border: 1px solid var(--yellow); border-radius: 50%; }
+  .machine-tag { position: absolute; right: -2rem; bottom: 2rem; display: flex; flex-direction: column; background: var(--yellow); padding: 1.3rem; }
+  .machine-tag small,.machine-tag span { font-size: .54rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }.machine-tag strong { margin-block: .35rem; font-family: var(--display); font-size: 2rem; text-transform: uppercase; }
+  .gps-copy > p { color: #626660; line-height: 1.8; }
+  .gps-uses { margin: 2rem 0; border-top: 1px solid #c7c0b1; }
+  .gps-uses > div { display: grid; grid-template-columns: 42px 1fr; border-bottom: 1px solid #c7c0b1; padding-block: 1rem; }
+  .gps-uses span { grid-row: span 2; color: var(--yellow-deep); font-family: var(--display); font-weight: 800; }.gps-uses strong { font-family: var(--display); font-size: 1.25rem; text-transform: uppercase; }.gps-uses p { margin: .2rem 0 0; color: #747873; font-size: .72rem; }
+  .fleet-cta { background: #bda817; }
+  .fleet-cta > div { min-height: 290px; display: grid; grid-template-columns: .5fr 1fr auto; align-items: center; gap: 2rem; }
+  .fleet-cta span { font-size: .65rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }.fleet-cta h2 { margin: 0; font-size: clamp(3rem,5vw,5.3rem); }
+  @media (max-width: 960px) { .fleet-intro-grid,.gps-layout { grid-template-columns: 1fr; gap: 3rem; }.fleet-layout { grid-template-columns: 1fr; }.fleet-index { position: static; display: grid; grid-template-columns: repeat(3,1fr); }.fleet-index > span { grid-column: 1/-1; }.fleet-cta > div { grid-template-columns: 1fr; padding-block: 3rem; }.fleet-cta .btn { justify-self: start; } }
+  @media (max-width: 650px) { .equipment-items,.fleet-index { grid-template-columns: 1fr; }.category-head { grid-template-columns: 1fr; }.gps-image,.gps-image img { min-height: 500px; }.machine-tag { right: 1rem; }.fleet-index > span { grid-column: auto; } }
+</style>

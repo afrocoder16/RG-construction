@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { company, services } from '../data/site';
+---
+
+<BaseLayout
+  title="Request a Construction Quote | R&G Construction Marshall, MN"
+  description="Request a quote from R&G Construction for heavy grading, utilities, reclamation, site development and other civil construction work in Minnesota and South Dakota."
+>
+  <PageHero
+    eyebrow="Start a conversation"
+    title="Let's move some dirt."
+    intro="Share the basics. Our team will review the work and get back to you during regular business hours."
+    number="06"
+    image="/images/rg-hero.png"
+  />
+
+  <section id="quote" class="quote-section section-pad">
+    <div class="container-shell quote-layout">
+      <div class="quote-intro reveal">
+        <span class="eyebrow">Request a quote</span>
+        <h2 class="display">Tell us what<br />you're <em>building.</em></h2>
+        <p>Early plans, firm bid documents or just a site and a goal—we can start with what you have.</p>
+        <div class="direct-quote"><span>Send bid invitations directly</span><a href={`mailto:${company.quotesEmail}`}>{company.quotesEmail} ↗</a></div>
+      </div>
+
+      <form class="quote-form reveal" data-quote-form>
+        <div class="field-grid">
+          <label><span class="field-label">Name *</span><input class="field" type="text" name="name" autocomplete="name" required /></label>
+          <label><span class="field-label">Company</span><input class="field" type="text" name="company" autocomplete="organization" /></label>
+          <label><span class="field-label">Email *</span><input class="field" type="email" name="email" autocomplete="email" required /></label>
+          <label><span class="field-label">Phone *</span><input class="field" type="tel" name="phone" autocomplete="tel" required /></label>
+          <label class="wide"><span class="field-label">Project type *</span><select class="field" name="service" required><option value="">Select a service</option>{services.map((service)=><option value={service.title} data-slug={service.slug}>{service.title}</option>)}</select></label>
+          <label><span class="field-label">Project location</span><input class="field" type="text" name="location" placeholder="City, state" /></label>
+          <label><span class="field-label">Budget range <small>(optional)</small></span><select class="field" name="budget"><option value="Not specified">Select a range</option><option>Under $100,000</option><option>$100,000–$500,000</option><option>$500,000–$1 million</option><option>$1 million–$5 million</option><option>$5 million–$10 million</option></select></label>
+          <label class="wide"><span class="field-label">Project description *</span><textarea class="field" name="description" rows="7" placeholder="Scope, schedule, quantities, plan link or anything else that helps us understand the work." required></textarea></label>
+        </div>
+        <div class="form-bottom"><p>Submitting opens your email app with the project details prefilled to R&G's quote inbox.</p><button class="btn btn-orange btn-arrow" type="submit">Send Quote Request</button></div>
+        <p class="form-status" role="status" data-form-status></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="contact-cards">
+    <div class="container-shell contact-grid reveal">
+      <a href={company.phoneHref}><span>01 / Call</span><strong class="display">{company.phone}</strong><small>Office · Monday–Friday</small><i>↗</i></a>
+      <a href={`mailto:${company.email}`}><span>02 / General</span><strong class="display">Email the office</strong><small>{company.email}</small><i>↗</i></a>
+      <a href={company.mapsUrl} target="_blank" rel="noreferrer"><span>03 / Visit</span><strong class="display">Marshall, MN</strong><small>{company.address}<br />{company.addressLine2}</small><i>↗</i></a>
+    </div>
+  </section>
+
+  <section class="location-section">
+    <div class="location-map">
+      <iframe title="Map showing R&G Construction in Marshall, Minnesota" src="https://www.google.com/maps?q=2694%20County%20Road%206%2C%20Marshall%2C%20MN%2056258&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="location-copy grid-lines">
+      <span class="eyebrow eyebrow-light">Home base</span>
+      <h2 class="display">Marshall,<br />Minnesota.</h2>
+      <p>Located on South Highway 59, positioned to serve projects across southwest Minnesota and South Dakota.</p>
+      <address>{company.address}<br />{company.addressLine2}</address>
+      <a class="btn btn-orange btn-arrow" href={company.mapsUrl} target="_blank" rel="noreferrer">Get Directions</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .quote-section { background: var(--paper); }
+  .quote-layout { display: grid; grid-template-columns: .72fr 1.1fr; gap: 7rem; align-items: start; }
+  .quote-intro { position: sticky; top: 120px; }
+  .quote-intro h2 { margin: 1.2rem 0 1.5rem; font-size: clamp(4.2rem, 7vw, 7.5rem); }
+  .quote-intro h2 em { color: var(--orange); font-style: italic; }
+  .quote-intro > p { max-width: 420px; color: #626660; line-height: 1.75; }
+  .direct-quote { display: flex; flex-direction: column; gap: .4rem; margin-top: 2.2rem; border-left: 4px solid var(--orange); padding-left: 1rem; }
+  .direct-quote span { color: #888b85; font-size: .6rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .direct-quote a { font-size: .86rem; font-weight: 700; }
+  .quote-form { border: 1px solid #a9a193; background: #e9e3d8; padding: clamp(1.2rem, 3.5vw, 3rem); box-shadow: 18px 18px 0 #b8b0a2; }
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+  .wide { grid-column: 1/-1; }
+  .field-label small { color: #999c96; font-size: .55rem; }
+  .form-bottom { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 1.5rem; border-top: 1px solid #ddd8cd; padding-top: 1.5rem; }
+  .form-bottom p { max-width: 330px; margin: 0; color: #8a8d87; font-size: .67rem; line-height: 1.5; }
+  .form-status { margin: 1rem 0 0; color: #2e7334; font-size: .75rem; font-weight: 700; }
+  .contact-cards { background: #bdb5a7; }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid #bbb6ab; }
+  .contact-grid a { position: relative; min-height: 250px; display: flex; flex-direction: column; border-right: 1px solid #bbb6ab; padding: 2rem; transition: background .25s, color .25s; }
+  .contact-grid a:hover { background: var(--yellow); color: var(--ink); }
+  .contact-grid span { font-size: .61rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .contact-grid strong { margin: auto 0 .8rem; font-size: 2.3rem; }
+  .contact-grid small { color: #747872; font-size: .68rem; line-height: 1.5; }
+  .contact-grid a:hover small { color: rgba(20,22,21,.7); }
+  .contact-grid i { position: absolute; right: 1.5rem; top: 1.5rem; color: var(--orange); font-style: normal; }
+  .contact-grid a:hover i { color: var(--ink); }
+  .location-section { display: grid; grid-template-columns: 1.15fr .85fr; min-height: 650px; background: #292e2b; color: var(--bone); }
+  .location-map iframe { width: 100%; height: 100%; min-height: 650px; border: 0; filter: grayscale(1) contrast(1.1); }
+  .location-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem, 6vw, 7rem); }
+  .location-copy h2 { margin: 1.3rem 0; font-size: clamp(4.4rem, 8vw, 8rem); }
+  .location-copy p { color: #b7b3aa; line-height: 1.7; }
+  .location-copy address { margin: 1.5rem 0; color: #ded9cf; font-size: .85rem; font-style: normal; line-height: 1.7; }
+  .location-copy .btn { align-self: flex-start; }
+  @media (max-width: 900px) { .quote-layout { grid-template-columns: 1fr; gap: 3rem; } .quote-intro { position: static; } .location-section { grid-template-columns: 1fr; } .location-map iframe { min-height: 450px; } }
+  @media (max-width: 650px) { .field-grid, .contact-grid { grid-template-columns: 1fr; } .wide { grid-column: auto; } .form-bottom { align-items: stretch; flex-direction: column; } .contact-grid { border-top: 1px solid #bbb6ab; } .contact-grid a { min-height: 210px; border-bottom: 1px solid #bbb6ab; } }
+</style>
+
+<script is:inline define:vars={{ quotesEmail: company.quotesEmail }}>
+  const form = document.querySelector('[data-quote-form]');
+  const status = document.querySelector('[data-form-status]');
+  const params = new URLSearchParams(window.location.search);
+  const selectedService = params.get('service');
+  if (selectedService) {
+    const option = form?.querySelector(`option[data-slug="${CSS.escape(selectedService)}"]`);
+    if (option instanceof HTMLOptionElement) option.selected = true;
+  }
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!(form instanceof HTMLFormElement) || !form.reportValidity()) return;
+    const data = new FormData(form);
+    const name = String(data.get('name') || '');
+    const service = String(data.get('service') || 'Construction project');
+    const subject = `Quote Request: ${service} — ${name}`;
+    const body = [
+      `Name: ${name}`,
+      `Company: ${data.get('company') || 'Not provided'}`,
+      `Email: ${data.get('email')}`,
+      `Phone: ${data.get('phone')}`,
+      `Project type: ${service}`,
+      `Project location: ${data.get('location') || 'Not provided'}`,
+      `Budget range: ${data.get('budget') || 'Not specified'}`,
+      '',
+      'Project description:',
+      String(data.get('description') || ''),
+    ].join('\n');
+    if (status) status.textContent = 'Opening your email app with the quote details…';
+    window.location.href = `mailto:${quotesEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

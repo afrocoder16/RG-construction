@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CurrentProjects from '../components/CurrentProjects.astro';
+import { projects } from '../data/site';
+const filters = ['All work', 'Roadway + Utilities', 'Site + Trail', 'Street Reconstruction', 'Site Development', 'Institutional Sitework', 'Airport Construction'];
+---
+
+<BaseLayout
+  title="Heavy Civil Projects | R&G Construction Marshall, MN"
+  description="See representative highway, municipal, site development and airport work from R&G Construction across southwest Minnesota and the Upper Midwest."
+>
+  <PageHero
+    eyebrow="Selected work"
+    title="Proof is in the ground."
+    intro="Public infrastructure, institutional development and transportation work delivered across southwest Minnesota."
+    number="03"
+    image="/images/rural-road.jpg"
+  />
+
+  <section class="projects-main section-pad">
+    <div class="container-shell">
+      <div class="projects-heading reveal">
+        <div><span class="eyebrow">Project experience</span><h2 class="display">Work that moves<br /><em>communities.</em></h2></div>
+        <p>R&G delivers projects from a few thousand dollars to as much as $10 million for MnDOT, SD DOT, counties, municipalities and commercial developers.</p>
+      </div>
+
+      <div class="filter-bar" aria-label="Filter projects" data-filter-bar>
+        {filters.map((filter, index) => <button class:list={{ active: index === 0 }} type="button" data-filter={filter}>{filter}</button>)}
+      </div>
+
+      <div class="project-grid" data-project-grid>
+        {projects.map((project, index) => (
+          <div data-project data-type={project.type}>
+            <ProjectCard project={project} index={index} />
+          </div>
+        ))}
+      </div>
+      <p class="disclaimer">This sample site uses representative imagery. Publicly referenced project names and details should be reviewed by R&G; replace all stock imagery with approved R&G project photography before public launch.</p>
+    </div>
+  </section>
+
+  <section class="current-work section-pad">
+    <div class="container-shell">
+      <div class="current-heading reveal"><div><span class="eyebrow">Current projects</span><h2 class="display">Work in<br /><em>motion.</em></h2></div><p><strong>Sample project feed:</strong> these entries demonstrate a future CMS-managed status area and must be replaced with current R&G projects before launch.</p></div>
+      <CurrentProjects />
+    </div>
+  </section>
+
+  <section class="award-callout">
+    <div class="container-shell award-layout reveal">
+      <div class="award-mark"><span>2023</span><strong>MN</strong><small>Concrete Paving Award</small></div>
+      <div><span class="eyebrow eyebrow-light">Recognized work</span><h2 class="display">A downtown rebuild<br />worth recognizing.</h2><p>R&G Construction served as general contractor for Marshall’s North 3rd Street and West Lyon Street reconstruction, a project recognized with a 2023 Minnesota Concrete Paving Award.</p><a class="btn btn-orange btn-arrow" href="/contact#quote">Start a project</a></div>
+    </div>
+  </section>
+
+  <section class="work-types section-pad">
+    <div class="container-shell">
+      <span class="eyebrow">Who we build for</span>
+      <div class="client-grid reveal">
+        <div><span>/01</span><h3 class="display">State DOTs</h3><p>Highway grading and transportation packages for MnDOT and SD DOT.</p></div>
+        <div><span>/02</span><h3 class="display">Counties & Cities</h3><p>Roads, utilities, drainage and civic infrastructure across the region.</p></div>
+        <div><span>/03</span><h3 class="display">Private Owners</h3><p>Commercial site development, grading and civil preparation at scale.</p></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-main { background: var(--paper); }
+  .projects-heading { display: flex; justify-content: space-between; align-items: end; gap: 4rem; }
+  .projects-heading h2 { margin: 1.3rem 0 0; font-size: clamp(4rem, 8vw, 8rem); }
+  .projects-heading h2 em { color: var(--orange); font-style: italic; }
+  .projects-heading > p { max-width: 400px; color: #626660; line-height: 1.75; }
+  .filter-bar { display: flex; flex-wrap: wrap; gap: .5rem; margin: 3.5rem 0 2rem; border-top: 1px solid #c8c3b7; padding-top: 1.5rem; }
+  .filter-bar button { cursor: pointer; border: 1px solid #beb9ad; background: transparent; padding: .7rem .85rem; color: #656962; font-size: .62rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; transition: .2s; }
+  .filter-bar button:hover, .filter-bar button.active { border-color: var(--yellow); background: var(--yellow); color: var(--ink); }
+  .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem; }
+  [data-project].is-hidden { display: none; }
+  .disclaimer { margin: 1.2rem 0 0; color: #92958f; font-size: .63rem; font-style: italic; line-height: 1.5; }
+  .current-work { background: #c7bfb1; border-top: 1px solid #aaa294; }
+  .current-heading { display: flex; justify-content: space-between; align-items: end; gap: 4rem; margin-bottom: 3rem; }
+  .current-heading h2 { margin: 1.2rem 0 0; font-size: clamp(4rem,7.5vw,7.7rem); }.current-heading h2 em { color: var(--yellow-deep); font-style: italic; }
+  .current-heading > p { max-width: 420px; border-left: 5px solid var(--yellow); padding-left: 1rem; color: #666a64; font-size: .78rem; line-height: 1.65; }
+  .award-callout { background: #292e2b; color: var(--bone); border-top: 1px solid #3f443f; }
+  .award-layout { min-height: 600px; display: grid; grid-template-columns: .55fr 1fr; align-items: center; gap: 7rem; padding-block: 6rem; }
+  .award-mark { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid rgba(238,233,223,.2); border-radius: 50%; box-shadow: 0 0 0 20px #292e2b, 0 0 0 21px rgba(203,181,22,.55); text-align: center; }
+  .award-mark span { color: var(--orange); font-family: var(--display); font-size: 2.2rem; font-weight: 700; }
+  .award-mark strong { font-family: var(--display); font-size: 7rem; line-height: .8; letter-spacing: -.06em; }
+  .award-mark small { margin-top: 1rem; font-size: .6rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .award-layout h2 { margin: 1.4rem 0; font-size: clamp(4rem, 7vw, 7rem); }
+  .award-layout p { max-width: 600px; color: #b7b3aa; line-height: 1.8; }
+  .award-layout .btn { margin-top: 1.3rem; }
+  .work-types { background: #bdb5a7; }
+  .client-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2rem; border-top: 1px solid #bcb7ab; border-left: 1px solid #bcb7ab; }
+  .client-grid > div { min-height: 290px; border-right: 1px solid #bcb7ab; border-bottom: 1px solid #bcb7ab; padding: 2rem; }
+  .client-grid span { color: var(--orange); font-family: var(--display); }
+  .client-grid h3 { margin: 5rem 0 1rem; font-size: 2.7rem; }
+  .client-grid p { color: #656962; font-size: .82rem; line-height: 1.65; }
+  @media (max-width: 850px) { .projects-heading,.current-heading { align-items: start; flex-direction: column; gap: 1.5rem; } .award-layout { grid-template-columns: 1fr; gap: 5rem; } .award-mark { width: min(100%, 360px); } }
+  @media (max-width: 650px) { .project-grid, .client-grid { grid-template-columns: 1fr; } .award-layout { padding-block: 5rem; } }
+</style>
+
+<script>
+  const filterBar = document.querySelector('[data-filter-bar]');
+  const cards = document.querySelectorAll('[data-project]');
+  filterBar?.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+    if (!button) return;
+    filterBar.querySelectorAll('button').forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    const value = button.dataset.filter;
+    cards.forEach((card) => card.classList.toggle('is-hidden', value !== 'All work' && card.getAttribute('data-type') !== value));
+  });
+</script>

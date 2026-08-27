@@ -1,0 +1,27 @@
+---
+import { siteStatus } from '../config/siteStatus';
+interface Props { compact?: boolean; }
+const { compact = false } = Astro.props;
+const statuses = [
+  siteStatus.currentlyBidding && { label: 'Currently Bidding', href: '/contact#quote', type: 'bidding' },
+  siteStatus.nowHiring && { label: 'Now Hiring', href: '/careers#application', type: 'hiring' },
+].filter(Boolean) as { label: string; href: string; type: string }[];
+---
+
+{statuses.length > 0 && (
+  <div class:list={['status-badges', { compact }]} aria-label="R&G Construction current status">
+    {statuses.map((status) => (
+      <a href={status.href} class={status.type}><span aria-hidden="true"></span>{status.label}</a>
+    ))}
+  </div>
+)}
+
+<style>
+  .status-badges { display: flex; flex-wrap: wrap; gap: .55rem; }
+  .status-badges a { display: inline-flex; align-items: center; gap: .55rem; min-height: 34px; border: 1px solid rgba(238,233,223,.25); background: rgba(37,42,39,.82); padding: .45rem .7rem; color: #ece7dc; font-size: .61rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transition: border-color .2s, transform .2s, background .2s; }
+  .status-badges a:hover { border-color: var(--yellow); background: #343a36; transform: translateY(-1px); }
+  .status-badges a span { width: 7px; height: 7px; border-radius: 50%; background: #2fa65a; box-shadow: 0 0 0 4px rgba(47,166,90,.13); }
+  .status-badges .hiring span { background: #d3b900; box-shadow: 0 0 0 4px rgba(211,185,0,.15); }
+  .compact { gap: .35rem; }
+  .compact a { min-height: 30px; padding: .35rem .55rem; font-size: .54rem; background: #2c312e; }
+</style>

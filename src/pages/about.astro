@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import StatBar from '../components/StatBar.astro';
+import CredentialsGrid from '../components/CredentialsGrid.astro';
+import { companyStats } from '../data/metrics';
+---
+
+<BaseLayout
+  title="About R&G Construction | Family Owned Since 1983"
+  description="Founded by Reinhold Mathiowetz in 1983, R&G Construction is a second-generation family-owned heavy civil contractor serving Minnesota and South Dakota."
+>
+  <PageHero
+    eyebrow="Our company"
+    title="Four decades. One standard."
+    intro="Founded on hard work in Marshall. Carried forward by family. Trusted across the Upper Midwest since 1983."
+    number="04"
+  />
+
+  <section class="story section-pad">
+    <div class="container-shell story-grid">
+      <div class="story-image reveal">
+        {/* TODO: replace with archival Reinhold Mathiowetz / early R&G crew photography before launch */}
+        <img src="/images/grader-earthwork.jpg" alt="Representative motor grader at work on an earthwork project" loading="lazy" />
+        <div class="year-block"><span>Founded</span><strong>1983</strong><small>Marshall, Minnesota</small></div>
+      </div>
+      <div class="story-copy reveal">
+        <span class="eyebrow">Where it started</span>
+        <h2 class="display">A company<br />built to <em>endure.</em></h2>
+        <p class="lead">Reinhold Mathiowetz founded R&G Construction in 1983 with a straightforward belief: do solid work, stand behind it, and build relationships that last as long as the road.</p>
+        <p>Over four decades later, that same field-first mindset carries into every grading plan, utility trench and finished subgrade. The company has grown from its southwest Minnesota roots into a trusted civil construction partner for state agencies, counties and private owners.</p>
+      </div>
+    </div>
+  </section>
+
+  <StatBar stats={companyStats} light />
+
+  <section class="family-section grid-lines">
+    <div class="container-shell family-layout reveal">
+      <div>
+        <span class="eyebrow eyebrow-light">Second generation leadership</span>
+        <h2 class="display">Family owned.<br /><em>Field driven.</em></h2>
+      </div>
+      <div class="family-copy">
+        <p>Today, Reinhold’s children and their spouses carry the business forward—keeping ownership close to the work, the people and the communities R&G serves.</p>
+        <div class="owner-grid">
+          <div><span>01</span><strong>Gregg & Gina</strong><small>Mathiowetz</small></div>
+          <div><span>02</span><strong>Michelle & Rick</strong><small>Schaeffer</small></div>
+          <div><span>03</span><strong>Scott & Cheri</strong><small>Mathiowetz</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="credentials-section section-pad">
+    <div class="container-shell">
+      <div class="credential-heading reveal"><div><span class="eyebrow">Credentials & readiness</span><h2 class="display">Easy to review.<br /><em>Honest about status.</em></h2></div><p>Bonding, safety, certification and prequalification details matter in bidding. The sample below distinguishes stated information from claims R&G still needs to confirm.</p></div>
+      <CredentialsGrid />
+    </div>
+  </section>
+
+  <section id="technology" class="technology section-pad">
+    <div class="container-shell tech-heading reveal">
+      <div><span class="eyebrow">Safety + technology</span><h2 class="display">Old-school accountability.<br /><em>Next-grade precision.</em></h2></div>
+      <p>Experience still matters. The right technology makes that experience even more productive.</p>
+    </div>
+    <div class="container-shell tech-grid">
+      <div class="tech-image reveal">
+        {/* TODO: replace with close-up photo of R&G Trimble GPS equipment before launch */}
+        <img src="/images/precision-grading.jpg" alt="Precision motor grading equipment on a civil construction site" loading="lazy" />
+        <div class="crosshair"></div>
+      </div>
+      <div class="tech-features reveal">
+        <article><span>/01</span><h3 class="display">GPS-guided grading</h3><p>Trimble machine control carries engineered surfaces into the cab for stakeless highway, county, commercial and airport construction.</p></article>
+        <article><span>/02</span><h3 class="display">DOT experience</h3><p>Field experience with MnDOT and SD DOT requirements helps teams plan documentation, coordination and production with public owners in mind.</p></article>
+        <article><span>/03</span><h3 class="display">Safety in the sequence</h3><p>Safe work starts before equipment moves—with planning, communication, utility awareness and a crew that looks out for the people around them.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-area">
+    <div class="container-shell area-grid reveal">
+      <div class="map-art" aria-label="Service area illustration showing Minnesota and South Dakota">
+        <svg viewBox="0 0 620 390" role="img" aria-hidden="true">
+          <path d="M325 36h162l3 38 25 13-6 30 24 14-1 105-29 22-8 86H327l-1-160-19-18 17-28z" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="M36 126h270l19 17v201H61l-16-18-15-69 13-54-17-35z" fill="none" stroke="currentColor" stroke-width="2" />
+          <circle cx="363" cy="245" r="7" fill="#f0d900"/><circle cx="363" cy="245" r="18" fill="none" stroke="#f0d900" opacity=".75"/>
+          <path d="M363 245l54-42" stroke="#897600" stroke-width="1"/><text x="424" y="200" fill="#897600" font-family="sans-serif" font-size="11" letter-spacing="2">MARSHALL</text>
+        </svg>
+        <span class="mn">MN</span><span class="sd">SD</span>
+      </div>
+      <div>
+        <span class="eyebrow">Regional reach</span>
+        <h2 class="display">Built here in<br />the Upper Midwest.</h2>
+        <p>Headquartered in Marshall, R&G Construction serves public and private owners across Minnesota and South Dakota.</p>
+        <div class="area-list"><span>Minnesota</span><span>South Dakota</span><span>Regional airports</span><span>County systems</span></div>
+        <a class="btn btn-orange btn-arrow" href="/contact#quote">Bring us your project</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .story { background: var(--paper); }
+  .story-grid { display: grid; grid-template-columns: 1fr .85fr; gap: 7rem; align-items: center; }
+  .story-image { position: relative; min-height: 700px; }
+  .story-image img { width: 100%; height: 100%; min-height: 700px; object-fit: cover; filter: grayscale(.4) sepia(.15); }
+  .year-block { position: absolute; right: -3.2rem; bottom: 3rem; min-width: 230px; display: flex; flex-direction: column; background: var(--yellow); padding: 1.5rem; color: var(--ink); }
+  .year-block span, .year-block small { font-size: .58rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .year-block strong { margin-block: .2rem; font-family: var(--display); font-size: 5rem; line-height: 1; }
+  .story-copy h2, .family-layout h2, .tech-heading h2, .credential-heading h2, .area-grid h2 { margin: 1.2rem 0 1.5rem; font-size: clamp(4.2rem, 7vw, 7.4rem); }
+  h2 em { color: var(--orange); font-style: italic; }
+  .story-copy p { color: #666a64; line-height: 1.8; }
+  .story-copy .lead { color: #272a29; font-size: 1.18rem; line-height: 1.6; }
+  .family-section { background: #292e2b; color: var(--bone); border-block: 1px solid #3e433f; }
+  .family-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; padding-block: 8rem; }
+  .family-copy > p { max-width: 580px; margin: 0 0 2.5rem; color: #b7b3aa; font-size: 1.02rem; line-height: 1.75; }
+  .owner-grid { border-top: 1px solid #4a4f4b; }
+  .owner-grid > div { display: grid; grid-template-columns: 42px 1fr; border-bottom: 1px solid #4a4f4b; padding-block: 1.15rem; }
+  .owner-grid span { grid-row: span 2; color: var(--orange); font-family: var(--display); }
+  .owner-grid strong { font-family: var(--display); font-size: 1.5rem; text-transform: uppercase; }
+  .owner-grid small { color: #777b76; font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+  .technology { background: #bfb7a9; }
+  .tech-heading { display: flex; justify-content: space-between; align-items: end; gap: 3rem; margin-bottom: 4rem; }
+  .tech-heading > p { max-width: 350px; color: #626660; line-height: 1.7; }
+  .tech-grid { display: grid; grid-template-columns: 1fr .9fr; gap: 4rem; }
+  .tech-image { position: relative; min-height: 590px; overflow: hidden; }
+  .tech-image img { width: 100%; height: 100%; min-height: 590px; object-fit: cover; filter: saturate(.7); }
+  .crosshair { position: absolute; width: 110px; height: 110px; left: 60%; top: 48%; border: 1px solid var(--orange); border-radius: 50%; }
+  .crosshair::before, .crosshair::after { content: ''; position: absolute; background: var(--orange); }
+  .crosshair::before { left: -20px; top: 50%; width: 150px; height: 1px; }
+  .crosshair::after { left: 50%; top: -20px; height: 150px; width: 1px; }
+  .tech-features { display: flex; flex-direction: column; justify-content: center; }
+  .tech-features article { display: grid; grid-template-columns: 45px 1fr; border-top: 1px solid #c2bdb1; padding-block: 1.6rem; }
+  .tech-features article:last-child { border-bottom: 1px solid #c2bdb1; }
+  .tech-features span { grid-row: span 2; color: var(--orange); font-family: var(--display); font-weight: 700; }
+  .tech-features h3 { margin: 0; font-size: 2rem; }
+  .tech-features p { margin: .7rem 0 0; color: #626660; font-size: .84rem; line-height: 1.7; }
+  .credentials-section { background: #222624; color: var(--bone); }
+  .credential-heading { display: flex; justify-content: space-between; align-items: end; gap: 4rem; margin-bottom: 3rem; }
+  .credential-heading .eyebrow { color: var(--yellow); }
+  .credential-heading h2 em { color: var(--yellow); }
+  .credential-heading > p { max-width: 410px; border-left: 5px solid var(--yellow); padding-left: 1.1rem; color: #aaa79e; line-height: 1.7; }
+  .service-area { background: #a99f5e; color: var(--ink); border-top: 1px solid #928846; }
+  .area-grid { min-height: 700px; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 6rem; padding-block: 6rem; }
+  .map-art { position: relative; color: #aaa27f; }
+  .map-art svg { width: 100%; }
+  .map-art > span { position: absolute; color: rgba(20,22,21,.08); font-family: var(--display); font-size: 6rem; font-weight: 800; }
+  .map-art .mn { left: 62%; top: 37%; }
+  .map-art .sd { left: 27%; top: 50%; }
+  .area-grid > div:last-child > p { color: #626660; line-height: 1.75; }
+  .area-list { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin: 2rem 0; }
+  .area-list span { border: 1px solid #cfc38a; background: rgba(255,255,255,.42); padding: .8rem; color: #4d514c; font-size: .65rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  @media (max-width: 900px) { .story-grid, .family-layout, .tech-grid, .area-grid { grid-template-columns: 1fr; gap: 4rem; } .tech-heading,.credential-heading { align-items: start; flex-direction: column; } .area-grid { min-height: auto; } }
+  @media (max-width: 650px) { .story-image, .story-image img { min-height: 500px; } .year-block { right: 1rem; } .family-layout { padding-block: 6rem; } }
+</style>

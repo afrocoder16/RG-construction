@@ -1,0 +1,31 @@
+---
+interface Stat { value: string; label: string; detail?: string; }
+interface Props { stats: Stat[]; light?: boolean; }
+const { stats, light = false } = Astro.props;
+---
+
+{/* PLACEHOLDER REVIEW: Confirm all business figures with R&G before launch. */}
+<section class:list={['stat-bar', { light }]} aria-label="R&G Construction by the numbers">
+  <div class="container-shell stat-grid" style={`--stat-count:${stats.length}`}>
+    {stats.map((stat) => (
+      <div class="stat-item">
+        <strong class="display">{stat.value}</strong>
+        <span>{stat.label}</span>
+        {stat.detail && <small>{stat.detail}</small>}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stat-bar { background: #bda817; color: #151816; }
+  .stat-grid { display: grid; grid-template-columns: repeat(var(--stat-count), minmax(0,1fr)); }
+  .stat-item { min-height: 158px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid rgba(20,22,21,.2); padding: 1.5rem; }
+  .stat-item:last-child { border-right: 1px solid rgba(20,22,21,.2); }
+  .stat-item strong { font-size: clamp(2.5rem, 4vw, 4.2rem); line-height: .85; }
+  .stat-item span { margin-top: .7rem; font-size: .66rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+  .stat-item small { margin-top: .25rem; color: rgba(20,22,21,.6); font-size: .59rem; line-height: 1.4; }
+  .light { background: #b8b0a2; border-block: 1px solid #9f978a; }
+  @media (max-width: 960px) { .stat-grid { grid-template-columns: repeat(2,1fr); } .stat-item { border-bottom: 1px solid rgba(20,22,21,.2); } }
+  @media (max-width: 520px) { .stat-grid { grid-template-columns: 1fr; } .stat-item { min-height: 126px; border-right: 1px solid rgba(20,22,21,.2); } }
+</style>

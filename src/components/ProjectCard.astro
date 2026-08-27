@@ -1,0 +1,46 @@
+---
+interface Project {
+  name: string;
+  location: string;
+  client: string;
+  type: string;
+  scope: string;
+  value: string;
+  image: string;
+  year: string;
+}
+const { project, index = 0 } = Astro.props as { project: Project; index?: number };
+---
+
+<article class="project-card reveal">
+  {/* TODO: replace with real project photo before launch */}
+  <div class="project-image">
+    <img src={project.image} alt={`Representative construction imagery for ${project.name}`} loading="lazy" />
+    <span class="project-year">{project.year}</span>
+    <span class="project-index">0{index + 1}</span>
+  </div>
+  <div class="project-body">
+    <div class="project-meta"><span>{project.type}</span><span>{project.location}</span></div>
+    <h3 class="display">{project.name}</h3>
+    <p>{project.scope}</p>
+    <div class="project-facts"><span><small>Client</small>{project.client}</span><span><small>Value</small>{project.value}</span></div>
+  </div>
+</article>
+
+<style>
+  .project-card { background: #e2dbcf; border: 1px solid #aaa294; overflow: hidden; }
+  .project-image { position: relative; aspect-ratio: 16/10; overflow: hidden; background: #292c2c; }
+  .project-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(16,18,18,.5), transparent 55%); }
+  .project-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.05); transition: transform .6s cubic-bezier(.2,.7,.2,1), filter .4s; }
+  .project-card:hover img { transform: scale(1.045); filter: saturate(1); }
+  .project-year, .project-index { position: absolute; z-index: 1; color: white; font-size: .64rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .project-year { left: 1rem; bottom: 1rem; background: var(--yellow); color: var(--ink); padding: .5rem .65rem; }
+  .project-index { right: 1rem; bottom: 1rem; }
+  .project-body { padding: 1.5rem; }
+  .project-meta { display: flex; justify-content: space-between; gap: 1rem; color: #777b75; font-size: .59rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+  h3 { margin: 1.4rem 0 .8rem; font-size: clamp(2rem, 3vw, 3rem); line-height: .94; }
+  p { margin: 0; color: #61645f; font-size: .85rem; line-height: 1.65; }
+  .project-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; border-top: 1px solid #ddd8cd; padding-top: 1rem; color: #343737; font-size: .7rem; font-weight: 700; }
+  .project-facts span { display: flex; flex-direction: column; gap: .2rem; }
+  .project-facts small { color: #9a9c97; font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; }
+</style>
