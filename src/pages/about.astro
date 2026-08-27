@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import StatBar from '../components/StatBar.astro';
 import CredentialsGrid from '../components/CredentialsGrid.astro';
 import { companyStats } from '../data/metrics';
+import { withBase } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -21,7 +22,7 @@ import { companyStats } from '../data/metrics';
     <div class="container-shell story-grid">
       <div class="story-image reveal">
         {/* TODO: replace with archival Reinhold Mathiowetz / early R&G crew photography before launch */}
-        <img src="/images/grader-earthwork.jpg" alt="Representative motor grader at work on an earthwork project" loading="lazy" />
+        <img src={withBase('/images/grader-earthwork.jpg')} alt="Representative motor grader at work on an earthwork project" loading="lazy" />
         <div class="year-block"><span>Founded</span><strong>1983</strong><small>Marshall, Minnesota</small></div>
       </div>
       <div class="story-copy reveal">
@@ -67,7 +68,7 @@ import { companyStats } from '../data/metrics';
     <div class="container-shell tech-grid">
       <div class="tech-image reveal">
         {/* TODO: replace with close-up photo of R&G Trimble GPS equipment before launch */}
-        <img src="/images/precision-grading.jpg" alt="Precision motor grading equipment on a civil construction site" loading="lazy" />
+        <img src={withBase('/images/precision-grading.jpg')} alt="Precision motor grading equipment on a civil construction site" loading="lazy" />
         <div class="crosshair"></div>
       </div>
       <div class="tech-features reveal">
@@ -94,7 +95,7 @@ import { companyStats } from '../data/metrics';
         <h2 class="display">Built here in<br />the Upper Midwest.</h2>
         <p>Headquartered in Marshall, R&G Construction serves public and private owners across Minnesota and South Dakota.</p>
         <div class="area-list"><span>Minnesota</span><span>South Dakota</span><span>Regional airports</span><span>County systems</span></div>
-        <a class="btn btn-orange btn-arrow" href="/contact#quote">Bring us your project</a>
+        <a class="btn btn-orange btn-arrow" href={withBase('/contact#quote')}>Bring us your project</a>
       </div>
     </div>
   </section>

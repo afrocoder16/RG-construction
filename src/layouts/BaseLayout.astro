@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { withBase } from '../utils/paths';
 import '../styles/global.css';
 
 interface Props {
@@ -10,16 +11,18 @@ interface Props {
 }
 
 const { title, description, image = '/images/rg-hero.png' } = Astro.props;
+const publicImage = withBase(image);
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const siteRoot = new URL(import.meta.env.BASE_URL, Astro.site);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
   name: 'R&G Construction Co.',
-  url: Astro.site?.href,
+  url: siteRoot.href,
   telephone: '+1-507-537-1473',
   email: 'info@randgconstruction.com',
   foundingDate: '1983',
-  image: new URL(image, Astro.site).href,
+  image: new URL(publicImage, Astro.site).href,
   address: {
     '@type': 'PostalAddress',
     streetAddress: '2694 County Road 6',
@@ -40,10 +43,10 @@ const schema = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#101212" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="icon" type="image/png" href={withBase('/images/logo.png')} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site)} />
+    <meta property="og:image" content={new URL(publicImage, Astro.site)} />
     <meta property="og:type" content="website" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
     <title>{title}</title>

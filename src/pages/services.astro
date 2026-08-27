@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import { services } from '../data/site';
+import { withBase } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -19,7 +20,7 @@ import { services } from '../data/site';
   <section class="service-intro section-pad">
     <div class="container-shell intro-layout reveal">
       <div><span class="eyebrow">From cut to finish</span><h2 class="display">Built for the work<br /><em>below the surface.</em></h2></div>
-      <div><p>R&G Construction brings more than four decades of Upper Midwest experience to transportation, municipal and commercial work. We understand how earth, water, weather and sequence affect the finished job—and we plan accordingly.</p><a class="btn btn-dark btn-arrow" href="/contact#quote">Talk to an estimator</a></div>
+      <div><p>R&G Construction brings more than four decades of Upper Midwest experience to transportation, municipal and commercial work. We understand how earth, water, weather and sequence affect the finished job—and we plan accordingly.</p><a class="btn btn-dark btn-arrow" href={withBase('/contact#quote')}>Talk to an estimator</a></div>
     </div>
   </section>
 
@@ -35,7 +36,7 @@ import { services } from '../data/site';
           <div class="service-detail">
             <p>{service.detail}</p>
             <div class="tag-row">{service.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
-            <a href={`/contact?service=${service.slug}#quote`}>Discuss this service <span>↗</span></a>
+            <a href={withBase(`/contact?service=${service.slug}#quote`)}>Discuss this service <span>↗</span></a>
           </div>
         </div>
       </article>
@@ -44,13 +45,13 @@ import { services } from '../data/site';
 
   <section class="equipment-band grain">
     {/* TODO: replace with real R&G equipment fleet photo before launch */}
-    <img src="/images/rg-hero.png" alt="Representative heavy civil construction fleet working on rural roadway earthwork" loading="lazy" />
+    <img src={withBase('/images/rg-hero.png')} alt="Representative heavy civil construction fleet working on rural roadway earthwork" loading="lazy" />
     <div class="equipment-overlay"></div>
     <div class="container-shell equipment-content reveal">
         <span class="eyebrow eyebrow-light">The equipment behind the outcome</span>
       <h2 class="display">Right iron.<br />Right operators.<br /><em>Right grade.</em></h2>
       <p>GPS-guided dozers, graders and excavators turn digital design into efficient field production.</p>
-      <a class="btn btn-orange btn-arrow" href="/about#technology">Our technology</a>
+      <a class="btn btn-orange btn-arrow" href={withBase('/about#technology')}>Our technology</a>
     </div>
   </section>
 </BaseLayout>
