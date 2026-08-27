@@ -1,4 +1,23 @@
 ---
-// Legacy route retained so old links land on the new online application.
-return Astro.redirect(`${import.meta.env.BASE_URL}careers#application`, 301);
+import { withBase } from '../utils/paths';
+
+// Static-host compatible legacy redirect for old employment application links.
+const target = withBase('/careers#application');
+const canonical = new URL(target, Astro.site);
 ---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={canonical} />
+    <title>Employment Application | R&G Construction</title>
+  </head>
+  <body>
+    <p>Opening the R&G Construction online application…</p>
+    <p><a href={target}>Continue to the application</a></p>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </body>
+</html>
