@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://randgconstruction.com/sitemap-index.xml
+Sitemap: https://afrocoder16.github.io/RG-construction/sitemap-index.xml

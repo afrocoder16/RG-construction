@@ -1,5 +1,6 @@
 ---
 import { siteStatus } from '../config/siteStatus';
+import { withBase } from '../utils/paths';
 interface Props { compact?: boolean; }
 const { compact = false } = Astro.props;
 const statuses = [
@@ -11,7 +12,7 @@ const statuses = [
 {statuses.length > 0 && (
   <div class:list={['status-badges', { compact }]} aria-label="R&G Construction current status">
     {statuses.map((status) => (
-      <a href={status.href} class={status.type}><span aria-hidden="true"></span>{status.label}</a>
+      <a href={withBase(status.href)} class={status.type}><span aria-hidden="true"></span>{status.label}</a>
     ))}
   </div>
 )}

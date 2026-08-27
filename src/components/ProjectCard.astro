@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/paths';
 interface Project {
   name: string;
   location: string;
@@ -15,7 +16,7 @@ const { project, index = 0 } = Astro.props as { project: Project; index?: number
 <article class="project-card reveal">
   {/* TODO: replace with real project photo before launch */}
   <div class="project-image">
-    <img src={project.image} alt={`Representative construction imagery for ${project.name}`} loading="lazy" />
+    <img src={withBase(project.image)} alt={`Representative construction imagery for ${project.name}`} loading="lazy" />
     <span class="project-year">{project.year}</span>
     <span class="project-index">0{index + 1}</span>
   </div>

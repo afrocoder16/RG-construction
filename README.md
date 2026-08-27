@@ -2,6 +2,8 @@
 
 A complete static marketing site for R&G Construction Co. in Marshall, Minnesota. Built with Astro and Tailwind CSS, with no login, CMS, or database dependency.
 
+Live site: https://afrocoder16.github.io/RG-construction/
+
 ## Run locally
 
 ```sh

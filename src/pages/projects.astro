@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CurrentProjects from '../components/CurrentProjects.astro';
 import { projects } from '../data/site';
+import { withBase } from '../utils/paths';
 const filters = ['All work', 'Roadway + Utilities', 'Site + Trail', 'Street Reconstruction', 'Site Development', 'Institutional Sitework', 'Airport Construction'];
 ---
 
@@ -51,7 +52,7 @@ const filters = ['All work', 'Roadway + Utilities', 'Site + Trail', 'Street Reco
   <section class="award-callout">
     <div class="container-shell award-layout reveal">
       <div class="award-mark"><span>2023</span><strong>MN</strong><small>Concrete Paving Award</small></div>
-      <div><span class="eyebrow eyebrow-light">Recognized work</span><h2 class="display">A downtown rebuild<br />worth recognizing.</h2><p>R&G Construction served as general contractor for Marshall’s North 3rd Street and West Lyon Street reconstruction, a project recognized with a 2023 Minnesota Concrete Paving Award.</p><a class="btn btn-orange btn-arrow" href="/contact#quote">Start a project</a></div>
+      <div><span class="eyebrow eyebrow-light">Recognized work</span><h2 class="display">A downtown rebuild<br />worth recognizing.</h2><p>R&G Construction served as general contractor for Marshall’s North 3rd Street and West Lyon Street reconstruction, a project recognized with a 2023 Minnesota Concrete Paving Award.</p><a class="btn btn-orange btn-arrow" href={withBase('/contact#quote')}>Start a project</a></div>
     </div>
   </section>
 

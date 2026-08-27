@@ -7,6 +7,7 @@ import CredentialsGrid from '../components/CredentialsGrid.astro';
 import CurrentProjects from '../components/CurrentProjects.astro';
 import { projects, services } from '../data/site';
 import { companyStats } from '../data/metrics';
+import { withBase } from '../utils/paths';
 ---
 
 <BaseLayout
@@ -15,7 +16,7 @@ import { companyStats } from '../data/metrics';
 >
   <section class="home-hero grain">
     {/* Custom concept image generated for this sample. Replace with R&G field photography before launch. */}
-    <img class="hero-image" src="/images/rg-hero.png" alt="Heavy civil grading equipment shaping a rural Upper Midwest highway at sunset" fetchpriority="high" />
+    <img class="hero-image" src={withBase('/images/rg-hero.png')} alt="Heavy civil grading equipment shaping a rural Upper Midwest highway at sunset" fetchpriority="high" />
     <div class="hero-shade"></div>
     <div class="hero-grid grid-lines"></div>
     <div class="hero-rail"><span>Family owned since 1983</span><span>MN / SD</span></div>
@@ -26,8 +27,8 @@ import { companyStats } from '../data/metrics';
       <div class="hero-copy">
         <p>40+ years of moving earth, building roads and delivering the infrastructure that keeps the Upper Midwest moving.</p>
         <div class="hero-actions">
-          <a class="btn btn-orange btn-arrow" href="/contact#quote">Request a Quote</a>
-          <a class="btn btn-outline" href="/projects">View Our Work</a>
+          <a class="btn btn-orange btn-arrow" href={withBase('/contact#quote')}>Request a Quote</a>
+          <a class="btn btn-outline" href={withBase('/projects')}>View Our Work</a>
         </div>
       </div>
     </div>
@@ -45,7 +46,7 @@ import { companyStats } from '../data/metrics';
       <div class="intro-copy">
         <p class="lead">We take on the work below every successful road, runway and development—the work that has to be right before anything else can be built.</p>
         <p>R&G Construction specializes in complete grading, shoulder widening, box culverts, bituminous reclamation, municipal utilities, site development and demolition. Projects range from a few thousand dollars to as much as $10 million.</p>
-        <a class="text-link" href="/about">Get to know R&G <span>↗</span></a>
+        <a class="text-link" href={withBase('/about')}>Get to know R&G <span>↗</span></a>
       </div>
     </div>
   </section>
@@ -58,7 +59,7 @@ import { companyStats } from '../data/metrics';
       </div>
       <div class="service-grid">
         {services.map((service) => (
-          <a class="service-card reveal" href={`/services#${service.slug}`}>
+          <a class="service-card reveal" href={withBase(`/services#${service.slug}`)}>
             <span class="service-number">/{service.number}</span>
             <span class="service-icon" aria-hidden="true">↘</span>
             <h3 class="display">{service.title}</h3>
@@ -74,7 +75,7 @@ import { companyStats } from '../data/metrics';
     <div class="container-shell tech-grid">
       <div class="tech-visual reveal">
         {/* TODO: replace with real R&G GPS-equipped machine photo before launch */}
-        <img src="/images/precision-grading.jpg" alt="Motor grader demonstrating precision heavy civil earthwork" loading="lazy" />
+        <img src={withBase('/images/precision-grading.jpg')} alt="Motor grader demonstrating precision heavy civil earthwork" loading="lazy" />
         <div class="gps-target"><span></span><span></span><span></span></div>
         <div class="tech-readout"><small>Machine control</small><strong>± 0.10'</strong><span>Design surface active</span></div>
       </div>
@@ -87,7 +88,7 @@ import { companyStats } from '../data/metrics';
           <div><span>02</span><strong>Grade precisely</strong><p>Design data guides equipment to exact elevations.</p></div>
           <div><span>03</span><strong>Move efficiently</strong><p>Reduce rework across highways, sites and airfields.</p></div>
         </div>
-        <a class="btn btn-orange btn-arrow" href="/about#technology">See how we work</a>
+        <a class="btn btn-orange btn-arrow" href={withBase('/about#technology')}>See how we work</a>
       </div>
     </div>
   </section>
@@ -106,7 +107,7 @@ import { companyStats } from '../data/metrics';
     <div class="container-shell">
       <div class="light-heading reveal">
         <div><span class="eyebrow">Selected work</span><h2 class="display">Built here.<br /><em>Built to last.</em></h2></div>
-        <div><p>Recent public work and long-standing experience across southwest Minnesota.</p><a class="text-link" href="/projects">View all projects <span>↗</span></a></div>
+        <div><p>Recent public work and long-standing experience across southwest Minnesota.</p><a class="text-link" href={withBase('/projects')}>View all projects <span>↗</span></a></div>
       </div>
       <div class="featured-grid">{projects.filter((p) => p.featured).map((project, index) => <ProjectCard project={project} index={index} />)}</div>
       <p class="imagery-note">Sample website imagery is representative. Project photography and final project details should be confirmed before launch.</p>

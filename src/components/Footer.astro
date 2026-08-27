@@ -1,5 +1,6 @@
 ---
 import { company, navItems } from '../data/site';
+import { withBase } from '../utils/paths';
 const year = new Date().getFullYear();
 ---
 
@@ -11,17 +12,17 @@ const year = new Date().getFullYear();
     </div>
     <div class="footer-cta">
       <p>Tell us where the work is, what needs to move, and when you need to break ground.</p>
-      <a class="btn btn-orange btn-arrow" href="/contact#quote">Request a Quote</a>
+      <a class="btn btn-orange btn-arrow" href={withBase('/contact#quote')}>Request a Quote</a>
     </div>
   </div>
   <div class="container-shell footer-main">
     <div class="footer-brand">
-      <a class="footer-logo" href="/"><img src="/images/logo.png" alt="R&G Construction" /></a>
+      <a class="footer-logo" href={withBase('/')}><img src={withBase('/images/logo.png')} alt="R&G Construction" /></a>
       <p>Heavy civil construction across Minnesota and South Dakota since 1983.</p>
     </div>
     <div>
       <h3>Navigate</h3>
-      <div class="footer-links">{navItems.map((item) => <a href={item.href}>{item.label}</a>)}</div>
+      <div class="footer-links">{navItems.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}</div>
     </div>
     <div>
       <h3>Contact</h3>

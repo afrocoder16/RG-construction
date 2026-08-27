@@ -1,24 +1,28 @@
 ---
 import { company, navItems } from '../data/site';
+import { withBase } from '../utils/paths';
 import StatusBadges from './StatusBadges.astro';
 const pathname = Astro.url.pathname;
-const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
+const isActive = (href: string) => {
+  const resolved = withBase(href);
+  return href === '/' ? pathname === resolved : pathname.startsWith(resolved);
+};
 ---
 
 <header class="site-header" data-header>
   <div class="header-inner">
-    <a class="brand" href="/" aria-label="R&G Construction home">
-      <img src="/images/logo.png" alt="R&G Construction, Marshall Minnesota" />
+    <a class="brand" href={withBase('/')} aria-label="R&G Construction home">
+      <img src={withBase('/images/logo.png')} alt="R&G Construction, Marshall Minnesota" />
     </a>
 
     <nav class="desktop-nav" aria-label="Main navigation">
       {navItems.map((item) => (
-        <a class:list={['nav-link', { active: isActive(item.href) }]} href={item.href}>{item.label}</a>
+        <a class:list={['nav-link', { active: isActive(item.href) }]} href={withBase(item.href)}>{item.label}</a>
       ))}
     </nav>
 
     <div class="header-status"><StatusBadges compact /></div>
-    <a class="header-quote" href="/contact#quote">Request a Quote <span aria-hidden="true">↗</span></a>
+    <a class="header-quote" href={withBase('/contact#quote')}>Request a Quote <span aria-hidden="true">↗</span></a>
 
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
       <span></span><span></span>
@@ -28,7 +32,7 @@ const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.st
   <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
     <nav aria-label="Mobile navigation">
       {navItems.map((item, index) => (
-        <a href={item.href}><span>0{index + 1}</span>{item.label}</a>
+        <a href={withBase(item.href)}><span>0{index + 1}</span>{item.label}</a>
       ))}
     </nav>
     <div class="mobile-menu-contact">
